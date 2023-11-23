@@ -1,11 +1,8 @@
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
-    static int LENGTH_OF_SYMBOLS = 15;
     public static void main(String[] args) throws IOException {
         String numbers = "";
         try (FileReader fileReader = new FileReader("D:\\Courses\\Valid document numbers\\Document numbers.txt")) {
@@ -25,9 +22,7 @@ public class Main {
         ) {
 
             for (int i = 0; i < number.length; i++) {
-                Pattern pattern = Pattern.compile("^[docnum&&[0-9a-zA-Z]]");
-                Matcher matcher = pattern.matcher(number[i]);
-                if (matcher.find()) {
+                if (number[i].trim().matches("^docnum[0-9a-zA-Z]{9}$") || number[i].matches("^contract[0-9a-zA-Z]{7}$")) {
                     fileWriter.write(number[i]);
                     fileWriter.flush();
 
